@@ -40,10 +40,10 @@ app.use(cors())
 
 
 
-// creo que este sobro papa
-// app.get("/", (req, res) => {
-//   res.send(database.users);
-// });
+// Esto para probar si funciona en la base de datos de render
+app.get("/", (req, res) => {
+  res.send('Its working server');
+});
 
 // signin
 // Dos maneras de hacerlo 
