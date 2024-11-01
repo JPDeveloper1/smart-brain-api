@@ -15,29 +15,29 @@ import {handleApiCall} from './controllers/image.js'
 
 
 // const db =
-const db = knex({
-  client: 'pg',
-  connection: {
-    host: 'dpg-cshjk0aj1k6c73993bb0-a.oregon-postgres.render.com',
-    port: 5432,
-    user: 'smart_brain_om63_user',
-    password: 'sG7mBzFnosevSw5Ovq72ydN5v4hbH2T0',
-    database: 'smart_brain_om63',
-    ssl: {
-      rejectUnauthorized: false // Importante si estás usando SSL con Render
-    }
-  },
-});
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 // const db = knex({
 //   client: 'pg',
 //   connection: {
-//     connectionString: process.env.DATABASE_URL,
+//     host: 'dpg-cshjk0aj1k6c73993bb0-a.oregon-postgres.render.com',
+//     port: 5432,
+//     user: 'smart_brain_om63_user',
+//     password: 'sG7mBzFnosevSw5Ovq72ydN5v4hbH2T0',
+//     database: 'smart_brain_om63',
 //     ssl: {
-//       rejectUnauthorized: false
+//       rejectUnauthorized: false // Importante si estás usando SSL con Render
 //     }
-//   }
+//   },
 // });
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+const db = knex({
+  client: 'pg',
+  connection: {
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: true
+    }
+  }
+});
 // db.select('*').from('users').then(data=>{
 //   console.log(data)
 // });
