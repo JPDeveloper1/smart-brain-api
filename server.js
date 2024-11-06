@@ -33,31 +33,31 @@ import { DB_HOST, DB_DATABASE, DB_PASSWORD, DB_USER, PORT, DATABASE_URL, DB_SSL}
 
 
 
-// const db = knex({
-//   client: 'pg',
-//   connection: {
-//     connectionString: DATABASE_URL,
-//     host: DB_HOST,
-//     port: PORT,
-//     user: DB_USER,
-//     database: DB_DATABASE,
-//     password: DB_PASSWORD,
-//     ssl: DB_SSL ? { rejectUnauthorized: false } : false,
-//   },
-// }); 
-
-
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const db = knex({
   client: 'pg',
   connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: true
-    }
-  }
-});
+    connectionString: DATABASE_URL,
+    host: DB_HOST,
+    port: PORT,
+    user: DB_USER,
+    database: DB_DATABASE,
+    password: DB_PASSWORD,
+    ssl: DB_SSL ? { rejectUnauthorized: false } : false,
+  },
+}); 
+
+
+
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+// const db = knex({
+//   client: 'pg',
+//   connection: {
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: {
+//       rejectUnauthorized: true
+//     }
+//   }
+// });
 db.select('*').from('users').then(data=>{
   console.log(data)
 });
