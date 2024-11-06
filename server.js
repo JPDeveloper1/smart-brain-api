@@ -1,5 +1,6 @@
 import express, { response } from 'express';
 import bodyParser from "body-parser";
+// import db from "pg";
 import bcrypt from 'bcrypt-nodejs'
 import cors from 'cors'
 // const cors = require('cors')
@@ -10,7 +11,7 @@ import {handleProfileGet} from './controllers/profile.js'
 import {handleImage} from './controllers/image.js'
 import {handleApiCall} from './controllers/image.js'
 // import register from './controllers/register.js';
-
+import { DB_HOST, DB_DATABASE, DB_PASSWORD, DB_USER, PORT, DATABASE_URL, DB_SSL} from './config.js';
 
 
 
@@ -28,19 +29,38 @@ import {handleApiCall} from './controllers/image.js'
 //     }
 //   },
 // });
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+
+
+
+
 const db = knex({
   client: 'pg',
   connection: {
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false
-    }
-  }
-});
-// db.select('*').from('users').then(data=>{
-//   console.log(data)
+    connectionString: DATABASE_URL,
+    host: DB_HOST,
+    port: PORT,
+    user: DB_USER,
+    database: DB_DATABASE,
+    password: DB_PASSWORD,
+    ssl: DB_SSL ? { rejectUnauthorized: false } : false,
+  },
+}); 
+
+
+
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+// const db = knex({
+//   client: 'pg',
+//   connection: {
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: {
+//       rejectUnauthorized: true
+//     }
+//   }
 // });
+db.select('*').from('users').then(data=>{
+  console.log(data)
+});
 
 const app = express();
 
@@ -119,7 +139,7 @@ app.post('/imageurl', (req,res) =>{handleApiCall(req,res)});
 // });
 
 // Load hash from your password DB.
-const PORT= process.env.PORT || 3000;
+// const PORT= process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log( `app is running on port ${PORT}`);
 });
