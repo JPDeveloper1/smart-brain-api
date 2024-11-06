@@ -1,4 +1,4 @@
-export const DATABASE_URL = process.env.DATABASE_URL || "http://localhost:3000/"
+export const DATABASE_URL = process.env.DATABASE_URL || "http://localhost:3001"
 
 export const DB_HOST = process.env.DB_HOST  || 'localhost'
 export const PORT= process.env.PORT || 3000
