@@ -1,7 +1,7 @@
-export const DATABASE_URL = process.env.DATABASE_URL || "http://localhost:3000/"
+export const DATABASE_URL = process.env.DATABASE_URL || "postgresql://smart_brain_om63_user:sG7mBzFnosevSw5Ovq72ydN5v4hbH2T0@dpg-cshjk0aj1k6c73993bb0-a/smart_brain_om63"
 
-export const DB_HOST = process.env.DB_HOST  || '127.0.0.1'
-export const PORT= process.env.PORT || 5432
+export const DB_HOST = process.env.DB_HOST  || 'localhost'
+export const PORT= process.env.PORT || 3000
 export const DB_DATABASE= process.env.DB_DATABASE || "smart-brain"
 export const DB_USER= process.env.DB_USER ||"postgres"
 export const  DB_PASSWORD=process.env.DB_PASSWORD || "guzman80944"
