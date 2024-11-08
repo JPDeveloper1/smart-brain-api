@@ -11,7 +11,7 @@ import {handleProfileGet} from './controllers/profile.js'
 import {handleImage} from './controllers/image.js'
 import {handleApiCall} from './controllers/image.js'
 // import register from './controllers/register.js';
-import { DB_HOST, DB_DATABASE, DB_PASSWORD, DB_USER, PORT, DATABASE_URL, DB_SSL} from './config.js';
+import { DB_HOST, DB_DATABASE, DB_PASSWORD, DB_USER, PORT, DATABASE_URL, DB_SSL, DB_PORT} from './config.js';
 
 
 
@@ -38,7 +38,7 @@ const db = knex({
   connection: {
     connectionString: DATABASE_URL,
     host: DB_HOST,
-    port: PORT,
+    port: DB_PORT,
     user: DB_USER,
     database: DB_DATABASE,
     password: DB_PASSWORD,
